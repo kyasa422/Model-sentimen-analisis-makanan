@@ -1,0 +1,13 @@
+# railway.yml
+
+name: fastapi-sentiment-analysis
+services:
+  - id: api
+    name: fastapi
+    github:
+      repo: kyasa422/Model-sentimen-analisis-makanan
+      branch: main  # Ganti dengan branch yang sesuai jika tidak menggunakan main
+    env:
+      PYTHON_VERSION: "3.8"
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
