@@ -49,7 +49,6 @@ from pydantic import BaseModel
 import joblib
 import requests
 
-BASE_URL = "https://your-app-name.up.railway.app"
 
 class PredictRequest(BaseModel):
     text: str
@@ -68,42 +67,21 @@ def read_root():
 
 @app.route("/predict", methods=['POST'])
 @app.post("/predict" )
-@app.put("/predict")
+
 
 
 def predict(request: PredictRequest):
     text = request.text
-    text_vector = vectorizer.transform([text])
-    prediction = model.predict(text_vector)
-    sentiment = "positive" if prediction[0] == 1 else "negative"
-    return {"prediction": sentiment}
-    
+    # text_vector = vectorizer.transform([text])
+    # prediction = model.predict(text_vector)
+    # sentiment = "positive" if prediction[0] == 1 else "negative"
+    # return {"prediction": sentiment}
+    return { text}  
 
-def send_get_request():
-    response = requests.get(f"{BASE_URL}/")
-    if response.status_code == 200:
-        print("GET request successful!")
-        print("Response:", response.json())
-    else:
-        print(f"GET request failed with status code {response.status_code}")
 
-# Function to send a POST request
-def send_post_request(text):
-    url = f"{BASE_URL}/predict/"
-    headers = {"Content-Type": "application/json"}
-    data = {"text": text}
-    
-    response = requests.post(url, json=data, headers=headers)
-    if response.status_code == 200:
-        print("POST request successful!")
-        print("Response:", response.json())
-    else:
-        print(f"POST request failed with status code {response.status_code}")
-        print("Response:", response.json())
 
 
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-    send_get_request()  # Test the GET request
-    send_post_request("makanan ini ngga enak")  # Test the POST request
+
