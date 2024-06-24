@@ -63,6 +63,7 @@ def read_root():
 
 @app.get("/predict/")
 def predict(request: PredictRequest):
+    print("request.text: ", request.text)
     text = request.text
     text_vector = vectorizer.transform([text])
     prediction = model.predict(text_vector)
