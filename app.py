@@ -58,9 +58,9 @@ model = joblib.load("model_sentimen_analis2.pkl")
 vectorizer = joblib.load("vectorizer2.pkl")
 
 @app.get("/")
-def read_root():
-    texttry = "makanan ini sangat enak"
-    text_vector = vectorizer.transform([texttry])
+def read_root(request: PredictRequest):
+    text = request.text
+    text_vector = vectorizer.transform([text])
     prediction = model.predict(text_vector)
     sentiment = "positive" if prediction[0] == 1 else "negative"
     return {"prediction": sentiment}
@@ -74,7 +74,7 @@ def predict(request: PredictRequest):
     # prediction = model.predict(text_vector)
     # sentiment = "positive" if prediction[0] == 1 else "negative"
     # return {"prediction": sentiment}
-    return {"prediction": "positive"}
+    return {}
 
 if __name__ == '__main__':
     import uvicorn
