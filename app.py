@@ -59,9 +59,9 @@ vectorizer = joblib.load("vectorizer2.pkl")
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"message": "Sentiment Analysis API is running!"}
 
-@app.post("/predict/")
+@app.get("/predict/")
 def predict(request: PredictRequest):
     text = request.text
     text_vector = vectorizer.transform([text])
@@ -71,4 +71,4 @@ def predict(request: PredictRequest):
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app=app,  host="0.0.0.0", port=8000 )
+    uvicorn.run(app)
