@@ -69,6 +69,13 @@ def read_root():
 @app.route("/predict", methods=['POST'])
 @app.post("/predict" )
 @app.post("/predict")
+@app.put("/predict")
+@app.options("/predict")
+@app.head("/predict")
+@app.patch("/predict")
+@app.trace("/predict")
+@app.connect("/predict")
+
 def predict(request: PredictRequest):
     text = request.text
     text_vector = vectorizer.transform([text])
