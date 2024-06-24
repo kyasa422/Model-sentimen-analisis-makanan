@@ -67,16 +67,13 @@ def read_root():
 
 @app.route("/predict", methods=['POST'])
 @app.post("/predict" )
-
-
-
 def predict(request: PredictRequest):
     text = request.text
-    # text_vector = vectorizer.transform([text])
-    # prediction = model.predict(text_vector)
-    # sentiment = "positive" if prediction[0] == 1 else "negative"
-    # return {"prediction": sentiment}
-    return { text}  
+    text_vector = vectorizer.transform([text])
+    prediction = model.predict(text_vector)
+    sentiment = "positive" if prediction[0] == 1 else "negative"
+    return {"prediction": sentiment}
+   
 
 
 
