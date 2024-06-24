@@ -18,7 +18,7 @@ def home() -> Any:
     return {"message": "Sentiment Analysis API is running!"}
 
 @app.post("/predict")
-def predict(data: TextData) -> Any:
+def predict(data: dict) -> Any:
     if not data.text:
         raise HTTPException(status_code=400, detail="No text provided")
 
