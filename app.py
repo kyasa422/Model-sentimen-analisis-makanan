@@ -10,7 +10,7 @@ app = FastAPI()
 model = joblib.load('model_sentimen_analis2.pkl')
 vectorizer = joblib.load('vectorizer2.pkl')
 
-class TextData(BaseModel):
+class PredictRequest(BaseModel):
     text: str
 
 @app.get("/")
@@ -25,12 +25,17 @@ def home() -> Any:
 #     text = data.text
 #     X = vectorizer.transform([text])
 #     prediction = model.predict(X)
-def predict(data: dict):
-    text = data['text']
-    text_vector = vectorizer.transform([text])
-    prediction = model.predict(text_vector)
+# def predict(data: dict):
+#     text = data['text']
+#     text_vector = vectorizer.transform([text])
+#     prediction = model.predict(text_vector)
     # return {"prediction": prediction[0]}
     # Convert numpy.int64 to int
+    
+def predict(request: PredictRequest):
+    text = request.text
+    text_vector = vectorizer.transform([text])
+    prediction = model.predict(text_vector)
     sentiment = "positive" if prediction[0] == 1 else "negative"
 
     return {"prediction": sentiment}
