@@ -103,3 +103,5 @@ def send_post_request(text):
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+    send_get_request()  # Test the GET request
+    send_post_request("makanan ini ngga enak")  # Test the POST request
