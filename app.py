@@ -61,7 +61,7 @@ vectorizer = joblib.load("vectorizer2.pkl")
 def read_root():
     return {"message": "Sentiment Analysis API is running!"}
 
-@app.get("/predict/")
+@app.post("/predict/")
 def predict(request: PredictRequest):
     print("request.text: ", request.text)
     text = request.text
