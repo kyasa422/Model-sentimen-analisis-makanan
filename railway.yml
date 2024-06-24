@@ -4,6 +4,7 @@ name: fastapi-sentiment-analysis
 services:
   - id: api
     name: fastapi
+    start: uvicorn app:app --host 0.0.0.0 --port $PORT
     github:
       repo: kyasa422/Model-sentimen-analisis-makanan
       branch: main  # Ganti dengan branch yang sesuai jika tidak menggunakan main
