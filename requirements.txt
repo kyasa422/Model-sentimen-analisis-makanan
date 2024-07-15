@@ -1,6 +1,7 @@
 fastapi
 uvicorn
-
 pandas
 openpyxl
 skops
+scikit-learn
+nltk
